@@ -28,9 +28,9 @@ function playGame(userChoice) {
     let result = getResult(userChoice, computerChoice);
     alert("Váš výber: " + userChoice + "\nVýber počítača: " + computerChoice + "\n\n" + result);
     console.log("Výsledok: " + result);
-    updateScore(result);
     updateChoicesCount(userChoice);
     updateHistory(userChoice, computerChoice, result);
+    updateScore(result);
 }
 
 function getComputerChoice() {
@@ -43,7 +43,6 @@ function getResult(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
         return "Remíza!";
     }
-
     if (
         (userChoice === "kamen" && computerChoice === "noznice") ||
         (userChoice === "papier" && computerChoice === "kamen") ||
@@ -91,7 +90,7 @@ function updateHistory(userChoice, computerChoice, result) {
     });
     console.log("História: ", history);
 
-    const historyTable = document.getElementById("history-table");
+    const historyTable = document.getElementById("table-data");
     const newRow = historyTable.insertRow();
 
     const roundCell = newRow.insertCell();
@@ -112,9 +111,10 @@ function resetGame() {
 
     const userScore_span = document.getElementById("user-score");
     const computerScore_span = document.getElementById("computer-score");
-    const historyTable = document.getElementById("history-table");
+    const historyTable = document.getElementById("table-data");
 
-    userScore_span.innerHTML = score.user;
-    computerScore_span.innerHTML = score.computer;
+    userScore_span.textContent = score.user;
+    computerScore_span.textContent = score.computer;
+
     historyTable.innerHTML = "";
 }
