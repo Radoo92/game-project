@@ -3,6 +3,8 @@ let score = {
     computer: 0
 };
 
+const historyTable = document.getElementById("table-data");
+
 let history = [];
 
 let choicesCount = {
@@ -11,15 +13,20 @@ let choicesCount = {
     nožnice: 0
 };
 
+let gameStarted = false;
 function startGame() {
-    alert("Hra začína!");
+    if (!gameStarted) {
+        alert("Hra začína!");
+        gameStarted = true;
+    }
+
     let userChoice = prompt("Zadajte svoj výber: Kamen, Papier alebo Noznice").toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
     console.log("Užívateľ zadal: " + userChoice);
+
     if (userChoice === "kamen" || userChoice === "papier" || userChoice === "noznice") {
-        playGame(userChoice);
-    } else {
-        alert("Neplatný výber! Skúste to znova.");
+        return playGame(userChoice);
     }
+    alert("Neplatný výber! Skúste to znova.");
 }
 
 function playGame(userChoice) {
@@ -69,11 +76,9 @@ function updateScore(result) {
     if (score.user === 3) {
         alert("Vyhrali ste hru!");
         resetGame();
-        return
     } else if (score.computer === 3) {
         alert("Prehrali ste hru!");
         resetGame();
-        return
     }
 }
 
