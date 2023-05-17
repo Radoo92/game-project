@@ -3,8 +3,6 @@ let score = {
     computer: 0
 };
 
-const historyTable = document.getElementById("table-data");
-
 let history = [];
 
 let choicesCount = {
@@ -14,6 +12,7 @@ let choicesCount = {
 };
 
 let gameStarted = false;
+
 function startGame() {
     if (!gameStarted) {
         alert("Hra začína!");
@@ -95,6 +94,10 @@ function updateHistory(userChoice, computerChoice, result) {
     });
     console.log("História: ", history);
 
+    createTableRow(userChoice, computerChoice, result);
+}
+
+function createTableRow(userChoice, computerChoice, result) {
     const historyTable = document.getElementById("table-data");
     const newRow = historyTable.insertRow();
 
