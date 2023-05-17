@@ -1,3 +1,7 @@
+const historyTable = document.getElementById("table-data");
+const userScore_span = document.getElementById("user-score");
+const computerScore_span = document.getElementById("computer-score");
+
 let score = {
     user: 0,
     computer: 0
@@ -12,7 +16,6 @@ let choicesCount = {
 };
 
 let gameStarted = false;
-let historyTable = null;
 
 function startGame() {
     if (!gameStarted) {
@@ -62,8 +65,6 @@ function getResult(userChoice, computerChoice) {
 }
 
 function updateScore(result) {
-    const userScore_span = document.getElementById("user-score");
-    const computerScore_span = document.getElementById("computer-score");
     if (result === "Vyhrali ste!") {
         score.user++;
         userScore_span.innerHTML = score.user;
@@ -111,21 +112,12 @@ function createTableRow(userChoice, computerChoice, result) {
     resultCell.textContent = result;
 }
 
-
-
 function resetGame() {
     score.user = 0;
     score.computer = 0;
     history = [];
 
-    const userScore_span = document.getElementById("user-score");
-    const computerScore_span = document.getElementById("computer-score");
     userScore_span.textContent = score.user;
     computerScore_span.textContent = score.computer;
-
     historyTable.innerHTML = "";
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    historyTable = document.getElementById("table-data");
-});
