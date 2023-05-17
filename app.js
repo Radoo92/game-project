@@ -12,6 +12,7 @@ let choicesCount = {
 };
 
 let gameStarted = false;
+let historyTable = null;
 
 function startGame() {
     if (!gameStarted) {
@@ -98,9 +99,7 @@ function updateHistory(userChoice, computerChoice, result) {
 }
 
 function createTableRow(userChoice, computerChoice, result) {
-    const historyTable = document.getElementById("table-data");
     const newRow = historyTable.insertRow();
-
     const roundCell = newRow.insertCell();
     const userCell = newRow.insertCell();
     const computerCell = newRow.insertCell();
@@ -112,6 +111,8 @@ function createTableRow(userChoice, computerChoice, result) {
     resultCell.textContent = result;
 }
 
+
+
 function resetGame() {
     score.user = 0;
     score.computer = 0;
@@ -119,10 +120,12 @@ function resetGame() {
 
     const userScore_span = document.getElementById("user-score");
     const computerScore_span = document.getElementById("computer-score");
-    const historyTable = document.getElementById("table-data");
-
     userScore_span.textContent = score.user;
     computerScore_span.textContent = score.computer;
 
     historyTable.innerHTML = "";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    historyTable = document.getElementById("table-data");
+});
